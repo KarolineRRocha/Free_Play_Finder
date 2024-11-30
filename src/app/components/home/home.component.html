@@ -1,1 +1,157 @@
-<p>home works!</p>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" >
+    <title>Free Play Finder - Seu Portal de Jogos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #1a1a2e;
+            color: #ffffff;
+        }
+        header {
+            background-color: #16213e;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0f3460;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #e94560;
+        }
+        .hero {
+            display: flex;
+            align-items: center;
+            padding: 50px 10%;
+            background-color: #0f3460;
+        }
+        .hero-content {
+            flex: 1;
+        }
+        .hero-content h1 {
+            font-size: 48px;
+            color: #e94560;
+            margin-bottom: 20px;
+        }
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #e94560;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #ff5b7b;
+        }
+        .featured-games {
+            padding: 50px 10%;
+            text-align: center;
+        }
+        .games-grid {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .game-card {
+            background-color: #16213e;
+            padding: 20px;
+            border-radius: 10px;
+            width: 30%;
+            transition: transform 0.3s;
+        }
+        .game-card:hover {
+            transform: scale(1.05);
+        }
+        footer {
+            background-color: #16213e;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <header>
+        <div class="logo">GameVerse</div>
+        <nav>
+            <a href="/src/app/components/home/home.component.html">Início</a>
+            <a href="/src/app/components/games-list/games-list.component.html">Jogos</a>
+            <a href="#">Categorias</a>
+            <a href="#">Comunidade</a>
+            
+           
+        </nav>
+    </header> -->
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Bem-vindo ao Free Play Finder</h1>
+            <p>Explore os melhores jogos, conecte-se com jogadores de todo o mundo e mergulhe em experiências incríveis. Sua próxima aventura começa aqui!</p>
+        </div>   
+    </section>
+    <h1 style="margin-left: 33%;">Veja todos os Jogos</h1>
+    <div style="margin-top: 3%; margin-left: 33%; width: 500px; height: 300px; overflow-y: auto; border:1px solid #e94560; border-radius: 10px;">
+        
+    <table  style="height: 400px;">
+            <tbody>
+                    @for (game of games; track $index)
+                    {
+                    <tr>
+                    <td>{{game.title}}</td>
+                    <td>
+                        <img [src]="game.thumbnail" alt="gameImage" width="100" />
+                    </td>
+                    </tr>
+                    }
+            </tbody>
+                </table>
+    </div>
+    
+
+    <section class="featured-games">
+        <h2>Jogos em Destaque</h2>
+        <div class="games-grid">
+            <div class="game-card">
+                <h3>Aventura Épica</h3>
+                <p>Entre em um mundo mágico de fantasia e desafios!</p>
+            </div>
+            <div class="game-card">
+                <h3>Estratégia Suprema</h3>
+                <p>Construa seu império e conquiste o mundo!</p>
+            </div>
+            <div class="game-card">
+                <h3>Ação Intensa</h3>
+                <p>Combata inimigos em missões eletrizantes!</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Free Play Finder. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
