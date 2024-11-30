@@ -11,6 +11,8 @@ export interface GameDetails {
   gameUrl: string;
   publisher: string;
   developer: string;
+  genre:string;
+  platform:string;
   releaseDate: string;
   freetogameProfileUrl: string;
   minimumSystemRequirements: MinimumSystemRequirements;
