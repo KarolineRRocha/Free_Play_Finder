@@ -1,1 +1,21 @@
-<p>games-list works!</p>
+<tbody>
+  @for (game of games; track $index)
+  {
+  <tr>
+    <td>{{game.id}}</td>
+    <td>{{game.title}}</td>
+    <td>
+      <img [src]="game.thumbnail" alt="gameImage" width="100" />
+    </td>
+    <td>{{game.shortDescription}}</td>
+    <td>
+      <a [href]="game.gameUrl" target="_blank">GameUrl</a>
+    </td>
+    <td>{{game.genre}}</td>
+    <td>{{game.platform}}</td>
+    <td>{{game.publisher}}</td>
+    <td>{{game.developer}}</td>
+    <td>{{game.releaseDate}}</td>
+  </tr>
+  }
+</tbody>
