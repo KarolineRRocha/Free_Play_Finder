@@ -1,25 +1,16 @@
 import {
-<<<<<<< HEAD
-=======
   Title
 } from "./chunk-GE6N4L2L.js";
 import "./chunk-VB7RPPRT.js";
 import {
->>>>>>> f53feee3a4183ec61e69f2377e861439c00db9a7
   DOCUMENT,
   HashLocationStrategy,
   LOCATION_INITIALIZED,
   Location,
   LocationStrategy,
   PathLocationStrategy,
-<<<<<<< HEAD
-  Title,
-  ViewportScroller
-} from "./chunk-OYIAGWIJ.js";
-=======
   ViewportScroller
 } from "./chunk-2VDO6DDW.js";
->>>>>>> f53feee3a4183ec61e69f2377e861439c00db9a7
 import {
   APP_BOOTSTRAP_LISTENER,
   APP_INITIALIZER,
