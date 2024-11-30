@@ -28,7 +28,10 @@ import {
   createApplication,
   disableDebugTools,
   enableDebugTools,
+<<<<<<< HEAD
   getDOM,
+=======
+>>>>>>> f53feee3a4183ec61e69f2377e861439c00db9a7
   initDomAdapter,
   platformBrowser,
   provideClientHydration,
@@ -37,7 +40,15 @@ import {
   withHttpTransferCacheOptions,
   withI18nSupport,
   withNoHttpTransferCache
+<<<<<<< HEAD
 } from "./chunk-RMZIL4IT.js";
+=======
+} from "./chunk-7LYRAPH3.js";
+import "./chunk-ASAZMDPO.js";
+import {
+  getDOM
+} from "./chunk-AWWGSX4I.js";
+>>>>>>> f53feee3a4183ec61e69f2377e861439c00db9a7
 import "./chunk-44JQ5FZC.js";
 import "./chunk-NQ4HTGF6.js";
 export {
