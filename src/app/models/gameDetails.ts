@@ -1,7 +1,7 @@
-import { minimumSystemRequirements } from "./minimumSystemRequirements";
-import { screenshots } from "./screenshots";
+import { MinimumSystemRequirements } from "./minimumSystemRequirements";
+import { Screenshots } from "./screenshots";
 
-export interface gameDetails {
+export interface GameDetails {
   id?: string;
   title: string;
   thumbnail: string;
@@ -13,6 +13,6 @@ export interface gameDetails {
   developer: string;
   releaseDate: string;
   freetogameProfileUrl: string;
-  minimumSystemRequirements: minimumSystemRequirements;
-  screenshots: Array<screenshots>;
+  minimumSystemRequirements: MinimumSystemRequirements;
+  screenshots: Array<Screenshots>;
 }

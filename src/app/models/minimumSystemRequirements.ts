@@ -1,4 +1,4 @@
-export interface minimumSystemRequirements {
+export interface MinimumSystemRequirements {
   os?: string;
   processor : string;
   memory : string;
