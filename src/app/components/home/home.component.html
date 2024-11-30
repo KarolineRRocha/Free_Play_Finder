@@ -96,6 +96,7 @@
 </head>
 <body>
     <!-- <header>
+
         <div class="logo">GameVerse</div>
         <nav>
             <a href="/src/app/components/home/home.component.html">Início</a>
@@ -107,6 +108,13 @@
         </nav>
     </header> -->
 
+    
+    <div *ngIf="games">
+        <input style="height: 28px;" type="text" (input)="onSearch($event)" placeholder="Pesquisar pelo título" />
+        <ul>
+          <li *ngFor="let game of filteredGames">{{ game.title }}</li>
+        </ul>
+    </div>
     <section class="hero">
         <div class="hero-content">
             <h1>Bem-vindo ao Free Play Finder</h1>
@@ -115,7 +123,7 @@
     </section>
     <h1 style="margin-left: 33%;">Veja todos os Jogos</h1>
     <div style="margin-top: 3%; margin-left: 33%; width: 500px; height: 300px; overflow-y: auto; border:1px solid #e94560; border-radius: 10px;">
-
+       
     <table  style="height: 400px;">
             <tbody>
                     @for (game of games; track $index)
@@ -132,8 +140,13 @@
                     </tr>
                     }
                 </tbody>
+                
         </table>
+        
     </div>
+
+
+   
     <!-- <section class="featured-games">
         <h2>Jogos em Destaque</h2>
         <div class="games-grid">
