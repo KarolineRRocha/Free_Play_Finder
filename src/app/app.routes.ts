@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+import { Routes } from "@angular/router";
+import { GameListComponent } from "./components/games-list/games-list.component";
+
+export const routes: Routes = [
+  { title: "Games", path: "games", component: GameListComponent },
+];
+=======
 import { Routes } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
@@ -12,3 +20,4 @@ export const routes: Routes = [
   { title: 'Game Detail', path: 'game/:id', component: GameDetailsComponent },
   { title: 'Profiles', path: 'profile', component: ProfileComponent },
 ];
+>>>>>>> d0dde795f5f8bb228c634af0a1e2102ae63f43f8

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 import { Game } from '../models/game';
 import { Genres } from './../models/genres';
 import { GameDetails } from './../models/gameDetails';
