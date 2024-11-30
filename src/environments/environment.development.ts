@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  URL: 'http://localhost:3000/gamesList',
+  URL: 'http://localhost:3000/',
 };
