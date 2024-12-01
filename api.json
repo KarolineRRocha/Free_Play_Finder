@@ -1,18 +1,17 @@
 {
   "profile": {
-    "id": "06c2",
-    "name": "dfsgvasdf",
-    "email": "zpovinho@mail.pt",
+    "id": "123",
+    "name": "gefferson",
+    "email": "gefferson@mail.pt",
     "password": "123456",
-    "avatar": "https://vineview.com/wp-content/uploads/2017/07/avatar-no-photo.png",
+    "avatar": "https://upload.wikimedia.org/wikipedia/pt/0/0f/Mortal_kombat_logo.png",
     "lists": [
       {
         "id": "emif",
         "name": "Play Later",
         "gamesIds": [
           "12",
-          "340",
-          "523"
+          "340"
         ]
       },
       {
@@ -36,7 +35,8 @@
         "name": "Completed",
         "gamesIds": [
           "522",
-          "508"
+          "508",
+          "523"
         ]
       }
     ]

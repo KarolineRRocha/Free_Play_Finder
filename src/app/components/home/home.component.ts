@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { GameService } from './../../services/game.service';
 import { Game } from '../../models/game'
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

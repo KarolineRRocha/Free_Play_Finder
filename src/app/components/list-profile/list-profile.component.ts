@@ -1,17 +1,19 @@
+import { HttpClientModule } from "@angular/common/http";
 import { Component } from "@angular/core";
-import { RouterLink, RouterModule } from "@angular/router";
 import { Lists } from "../../models/lists";
 import { Profile } from "../../models/profile";
 import { GameService } from "../../services/game.service";
 
 @Component({
-  selector: "app-nav",
+  selector: "app-list-profile",
   standalone: true,
-  imports: [RouterLink, RouterModule],
-  templateUrl: "./nav.component.html",
-  styleUrl: "./nav.component.scss",
+  imports: [HttpClientModule],
+  templateUrl: "./list-profile.component.html",
+  styleUrl: "./list-profile.component.css",
 })
-export class NavComponent {
+export class ListProfileComponent {
+  //mesma identificacao da API
+
   list: Lists = {
     id: "",
     name: "",
@@ -26,7 +28,6 @@ export class NavComponent {
     avatar: "",
     lists: Array<Lists>(),
   };
-  imageSource?: String = "";
 
   constructor(private gameService: GameService) {}
 
@@ -34,9 +35,10 @@ export class NavComponent {
     this.gameService.getProfiles().subscribe({
       next: (data) => {
         this.profile = data;
+        console.log(data);
       },
-      error: (erro) => {
-        console.error("Algo deu errado:", erro);
+      error: (error) => {
+        console.error("ERRO", error);
       },
     });
   }

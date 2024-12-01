@@ -1,0 +1,46 @@
+<h1 class="text-center fst-italic fw-bold" style="color: black;">Usuario da API</h1>
+<br />
+
+<div class="text-center d-flex justify-content-center">
+  <table id="table" class="table table-hover align-middle mb-0">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Avatar</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Password</th>
+        <!-- <th scope="col">List</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{profile.id}}</td>
+        <td>
+          <img [src]="profile.avatar" alt="avatar" style="width: 100px;" />
+        </td>
+        <td>{{profile.name}}</td>
+        <td>{{profile.email}}</td>
+        <td>{{profile.password}}</td>
+
+        <!-- <td>
+          <ul>
+            @for (list of profile.lists; track $index) {
+            <li>
+              <p><u>Id:</u> {{list.id}}</p>
+              <p><u>Nome:</u> {{list.name}}</p>
+              <p><u>GameIds:</u> {{list.gamesIds}}</p>
+              <br>
+            </li>
+            }
+
+          </ul>
+        </td> -->
+
+
+
+      </tr>
+
+    </tbody>
+  </table>
+</div>

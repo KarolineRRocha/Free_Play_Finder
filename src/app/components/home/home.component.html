@@ -115,7 +115,7 @@
     </section>
     <h1 style="margin-left: 33%;">Veja todos os Jogos</h1>
     <div style="margin-top: 3%; margin-left: 33%; width: 500px; height: 300px; overflow-y: auto; border:1px solid #e94560; border-radius: 10px;">
-        
+
     <table  style="height: 400px;">
             <tbody>
                     @for (game of games; track $index)
@@ -123,16 +123,18 @@
                     <tr>
                     <td>{{game.title}}</td>
                     <td>
-                        <img [src]="game.thumbnail" alt="gameImage" width="100" />
+                        <a [routerLink]="['/game', game.id]"
+                        routerLinkActive="ativo">
+                            <img [src]="game.thumbnail" alt="gameImage" width="150" />
+                        </a>
+                        
                     </td>
                     </tr>
                     }
-            </tbody>
-                </table>
+                </tbody>
+        </table>
     </div>
-    
-
-    <section class="featured-games">
+    <!-- <section class="featured-games">
         <h2>Jogos em Destaque</h2>
         <div class="games-grid">
             <div class="game-card">
@@ -148,10 +150,11 @@
                 <p>Combata inimigos em missões eletrizantes!</p>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <footer>
         <p>&copy; 2024 Free Play Finder. Todos os direitos reservados.</p>
     </footer>
 </body>
 </html>
+<router-outlet></router-outlet> 
