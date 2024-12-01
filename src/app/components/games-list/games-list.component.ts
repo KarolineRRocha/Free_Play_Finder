@@ -42,7 +42,7 @@ export class GameListComponent implements OnInit {
   constructor(private gameService: GameService) { }
 
   displayedColumns: string[] = ['title', 'genre', 'platform', 'releaseDate'];
-  dataSource!: MatTableDataSource<any>;
+  dataSource!: MatTableDataSource<Game>;
 
   @ViewChild(MatSort) sort!: MatSort;
   ngOnInit() {
@@ -50,8 +50,11 @@ export class GameListComponent implements OnInit {
       next: (data) => {
         this.games = data;
         this.dataSource = new MatTableDataSource(data);
-        this.dataSource.sort = this.sort
+      
       }
     })
+  }
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort
   }
 }
