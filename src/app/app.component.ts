@@ -8,6 +8,7 @@ import {
 import { GameListComponent } from "./components/games-list/games-list.component";
 import { NavComponent } from "./components/nav/nav.component";
 import { HomeComponent } from "./components/home/home.component";
+import { ListProfileComponent } from "./components/list-profile/list-profile.component";
 
 @Component({
   selector: "app-root",
@@ -19,8 +20,9 @@ import { HomeComponent } from "./components/home/home.component";
     RouterModule,
     GameListComponent,
     NavComponent,
-    HomeComponent
-],
+    HomeComponent,
+    ListProfileComponent,
+  ],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
 })
