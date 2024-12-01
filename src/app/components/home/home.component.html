@@ -97,6 +97,7 @@
 <body>
     <!-- <header>
 
+
         <div class="logo">GameVerse</div>
         <nav>
             <a href="/src/app/components/home/home.component.html">Início</a>
@@ -107,7 +108,7 @@
            
         </nav>
     </header> -->
-
+    
     <section class="hero">
         <div class="hero-content">
             <h1>Bem-vindo ao Free Play Finder</h1>
@@ -124,25 +125,10 @@
     <div style="margin-top: 3%; margin-left: 33%; width: 500px; height: 300px; overflow-y: auto; border:1px solid #e94560; border-radius: 10px;">
        
     <table  style="height: 400px;">
-        
-        <div class="filter-bar">
-            <div>
-                <label for="sort-by">Ordernar por:</label>
-                <select id="sort-by" (change)="sortGames()" name="sort-by">
-                    <option value="title">Título (A-Z)</option>
-                    <option value="title-desc">Título (Z-A)</option>
-                    <option value="genre-asc">Gênero (A-Z)</option>
-                    <option value="genre-desc">Gênero (Z-A)</option>
-                    <option value="platform-asc">Plataforma (A-Z)</option>
-                    <option value="platform-desc">Plataforma (Z-A)</option>
-                    <option value="release-asc">Data de Lançamento (Mais antigo)</option>
-                    <option value="release-desc">Data de Lançamento (Mais recente)</option>
-                </select>
-            </div>
-        </div>
             <tbody>
                     @for (game of games; track $index)
                     {
+                      
                     <tr>
                     <td>{{game.title}}</td>
                     <td>
@@ -152,15 +138,19 @@
                         </a>
                         
                     </td>
-                    </tr>
+                    <button (click)="addGameToPlayed(game.id!)">Adicionar</button>
+                    </tr> 
                     }
                 </tbody>
-                
+               
         </table>
         
     </div>
 
-
+    <div *ngIf="games">
+        
+    </div>
+  
    
     <!-- <section class="featured-games">
         <h2>Jogos em Destaque</h2>
