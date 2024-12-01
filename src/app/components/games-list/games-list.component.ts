@@ -50,7 +50,6 @@ export class GameListComponent implements OnInit {
       next: (data) => {
         this.games = data;
         this.dataSource = new MatTableDataSource(data);
-      
       }
     })
   }

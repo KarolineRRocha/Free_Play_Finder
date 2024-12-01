@@ -21,6 +21,7 @@ export class HomeComponent {
   filteredGames: Array<Game> = [];
   sortBy: string = '';
   searchTerm: string = '';
+  playedGames: Array<Game> = [];
 
   constructor(private gameService: GameService, private HttpClient: HttpClient  ) { }
 
@@ -36,31 +37,7 @@ export class HomeComponent {
     this.filteredGames = this.games.filter(game =>
       game.title.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
-    this.sortGames();
-  }
-  sortGames(){
-    this.filteredGames.sort((a, b) => {
-      switch (this.sortBy) {
-        case 'title-asc':
-          return a.title.localeCompare(b.title);
-        case 'title-desc':
-          return b.title.localeCompare(a.title);
-        case 'genre-asc':
-          return a.genre.localeCompare(b.genre);
-        case 'genre-desc':
-          return b.genre.localeCompare(a.genre);
-        case 'platform-asc':
-          return a.platform.localeCompare(b.platform);
-        case 'platform-desc':
-          return b.platform.localeCompare(a.platform);
-        case 'release-asc':
-          return new Date(a.releaseDate).getTime() - new Date(b.releaseDate).getTime();
-        case 'release-desc':
-          return new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime();
-        default:
-          return 0;
-      }
-    });
+   
   }
   onSortChange() {
     this.filterAndSortGames();
@@ -78,4 +55,11 @@ export class HomeComponent {
       );
 
     }  
+    addGameToPlayed(gameId: string) {
+      const gameToAdd = this.games.find(game => game.id === gameId);
+      if (gameToAdd && !this.playedGames.includes(gameToAdd)) {
+        this.playedGames.push(gameToAdd);
+      }
+      console.log(this.playedGames);
+    }
   }
