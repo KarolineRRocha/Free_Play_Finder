@@ -1,1 +1,113 @@
-<p>game-details works!</p>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Jogo - GameVerse</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #1a1a2e;
+            color: #ffffff;
+        }
+        header {
+            background-color: #16213e;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0f3460;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #e94560;
+        }
+        .game-details {
+            padding: 50px 10%;
+        }
+        .game-details h1 {
+            font-size: 36px;
+            color: #e94560;
+            margin-bottom: 20px;
+        }
+        .game-details p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .game-details table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #16213e;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .game-details th, .game-details td {
+            padding: 15px;
+            text-align: left;
+        }
+        .game-details th {
+            background-color: #0f3460;
+        }
+        .game-details td {
+            border-top: 1px solid #0f3460;
+        }
+        footer {
+            background-color: #16213e;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+  <section class="game-details">
+    <div *ngIf="games">
+        <h1>{{games.title}}</h1>
+        <img src="{{games.thumbnail}}" alt="{games.title}" height="200" width="300">
+        <p>{{games.shortDescription}}</p>
+        <table>
+            <tr>
+                <th>Gênero</th>
+                <td>{{games.genre}}</td>
+            </tr>
+            <tr>
+                <th>Plataforma</th>
+                <td>{{games.platform}}</td>
+            </tr>
+            <tr>
+                <th>Publicado por</th>
+                <td>{{games.publisher}}</td>
+            </tr>
+            <tr>
+                <th>Desenvolvedor</th>
+                <td>{{games.developer}}</td>
+            </tr>
+            <tr>
+                <th>Data de Lançamento</th>
+                <td>{{games.releaseDate}}</td>
+            </tr>
+        </table>
+    </div>
+     
+    </section>
+
+    <footer>
+        <p>&copy; 2024 GameVerse. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
