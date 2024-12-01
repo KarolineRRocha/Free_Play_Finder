@@ -1,13 +1,7 @@
 import {
   BidiModule,
   Directionality,
-  MatCommonModule
-} from "./chunk-2GK5XWQV.js";
-import "./chunk-RUZ7YYGD.js";
-import "./chunk-VMQPU6HG.js";
-import "./chunk-DRLQIKE3.js";
-import "./chunk-72YXEECH.js";
-import {
+  MatCommonModule,
   Platform,
   _isNumberValue,
   coerceBooleanProperty,
@@ -15,10 +9,13 @@ import {
   coerceNumberProperty,
   getRtlScrollAxisType,
   supportsScrollBehavior
-} from "./chunk-OJ5CU62E.js";
+} from "./chunk-IAO7LGNR.js";
+import "./chunk-KC44JINJ.js";
+import "./chunk-444PNPYD.js";
+import "./chunk-LAYRVMXO.js";
 import {
   DOCUMENT
-} from "./chunk-63O6VZSS.js";
+} from "./chunk-PQOAACJX.js";
 import {
   Attribute,
   BehaviorSubject,
@@ -103,7 +100,7 @@ import {
   ɵɵtext,
   ɵɵtextInterpolate1,
   ɵɵviewQuery
-} from "./chunk-7IMWH3EA.js";
+} from "./chunk-PZT6RD2W.js";
 
 // node_modules/@angular/cdk/fesm2022/collections.mjs
 var DataSource = class {

@@ -5,12 +5,12 @@
   <table id="table" class="table table-hover align-middle mb-0">
     <thead class="table-light">
       <tr>
-        <th scope="col">Id</th>
         <th scope="col">Avatar</th>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
         <th scope="col">Password</th>
-        <!-- <th scope="col">List</th> -->
+        <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -18,26 +18,21 @@
         <td>{{profile.id}}</td>
         <td>
           <img [src]="profile.avatar" alt="avatar" style="width: 100px;" />
+          <div class="col-md-12"><label class="labels">Image Url</label><input type="text" class="form-control" [(ngModel)]="profile.avatar" name="image.src"></div>
+
         </td>
-        <td>{{profile.name}}</td>
-        <td>{{profile.email}}</td>
-        <td>{{profile.password}}</td>
-
-        <!-- <td>
-          <ul>
-            @for (list of profile.lists; track $index) {
-            <li>
-              <p><u>Id:</u> {{list.id}}</p>
-              <p><u>Nome:</u> {{list.name}}</p>
-              <p><u>GameIds:</u> {{list.gamesIds}}</p>
-              <br>
-            </li>
-            }
-
-          </ul>
-        </td> -->
-
-
+        <td>
+          <input type="text" class="form-control" [(ngModel)]="profile.name" name="name">
+        </td>
+        <td>
+          <input type="text" class="form-control" [(ngModel)]="profile.email" name="email">
+        </td>
+        <td>
+          <input type="text" class="form-control" [(ngModel)]="profile.password" name="password">
+        </td>
+        <td>
+          <button class="btn btn-primary" (click)="updateUser()" type="button">Atualizar Dados</button>
+        </td>
 
       </tr>
 

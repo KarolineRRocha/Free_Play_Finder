@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" >
+    <meta name="viewport">
     <title>Free Play Finder - Seu Portal de Jogos</title>
     <style>
         * {
@@ -11,10 +12,12 @@
             box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
+
         body {
             background-color: #1a1a2e;
             color: #ffffff;
         }
+
         header {
             background-color: #16213e;
             padding: 20px;
@@ -23,39 +26,47 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .logo {
             font-size: 24px;
             font-weight: bold;
             color: #0f3460;
         }
+
         nav a {
             color: #ffffff;
             text-decoration: none;
             margin: 0 15px;
             transition: color 0.3s;
         }
+
         nav a:hover {
             color: #e94560;
         }
+
         .hero {
             display: flex;
             align-items: center;
             padding: 50px 10%;
             background-color: #0f3460;
         }
+
         .hero-content {
             flex: 1;
         }
+
         .hero-content h1 {
             font-size: 48px;
             color: #e94560;
             margin-bottom: 20px;
         }
+
         .hero-content p {
             font-size: 18px;
             margin-bottom: 30px;
             line-height: 1.6;
         }
+
         .cta-button {
             display: inline-block;
             background-color: #e94560;
@@ -65,18 +76,22 @@
             border-radius: 5px;
             transition: background-color 0.3s;
         }
+
         .cta-button:hover {
             background-color: #ff5b7b;
         }
+
         .featured-games {
             padding: 50px 10%;
             text-align: center;
         }
+
         .games-grid {
             display: flex;
             justify-content: space-between;
             margin-top: 30px;
         }
+
         .game-card {
             background-color: #16213e;
             padding: 20px;
@@ -84,9 +99,11 @@
             width: 30%;
             transition: transform 0.3s;
         }
+
         .game-card:hover {
             transform: scale(1.05);
         }
+
         footer {
             background-color: #16213e;
             text-align: center;
@@ -94,6 +111,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- <header>
 
@@ -112,56 +130,41 @@
         <div class="hero-content">
             <h1>Bem-vindo ao Free Play Finder</h1>
             <p>Explore os melhores jogos, conecte-se com jogadores de todo o mundo e mergulhe em experiências incríveis. Sua próxima aventura começa aqui!</p>
-        </div>  
+        </div>
         <div *ngIf="games">
             <input style="height: 28px;" type="text" (input)="onSearch($event)" placeholder="Pesquisar pelo título" />
             <ul>
-              <li *ngFor="let game of filteredGames">{{ game.title }}</li>
+                <li *ngFor="let game of filteredGames">{{ game.title }}</li>
             </ul>
-        </div> 
+        </div>
     </section>
     <h1 style="margin-left: 33%;">Veja todos os <a routerLink="/games">Jogos</a></h1>
     <div style="margin-top: 3%; margin-left: 33%; width: 500px; height: 300px; overflow-y: auto; border:1px solid #e94560; border-radius: 10px;">
-       
-    <table  style="height: 400px;">
-        
-        <div class="filter-bar">
-            <div>
-                <label for="sort-by">Ordernar por:</label>
-                <select id="sort-by" (change)="sortGames()" name="sort-by">
-                    <option value="title">Título (A-Z)</option>
-                    <option value="title-desc">Título (Z-A)</option>
-                    <option value="genre-asc">Gênero (A-Z)</option>
-                    <option value="genre-desc">Gênero (Z-A)</option>
-                    <option value="platform-asc">Plataforma (A-Z)</option>
-                    <option value="platform-desc">Plataforma (Z-A)</option>
-                    <option value="release-asc">Data de Lançamento (Mais antigo)</option>
-                    <option value="release-desc">Data de Lançamento (Mais recente)</option>
-                </select>
-            </div>
-        </div>
+
+        <table style="height: 400px;">
+
+
             <tbody>
-                    @for (game of games; track $index)
-                    {
-                    <tr>
+                @for (game of games; track $index)
+                {
+                <tr>
                     <td>{{game.title}}</td>
                     <td>
-                        <a [routerLink]="['/game', game.id]"
-                        routerLinkActive="ativo">
+                        <a [routerLink]="['/game', game.id]" routerLinkActive="ativo">
                             <img [src]="game.thumbnail" alt="gameImage" width="150" />
                         </a>
-                        
+
                     </td>
-                    </tr>
-                    }
-                </tbody>
-                
+                </tr>
+                }
+            </tbody>
+
         </table>
-        
+
     </div>
 
 
-   
+
     <!-- <section class="featured-games">
         <h2>Jogos em Destaque</h2>
         <div class="games-grid">
@@ -184,5 +187,6 @@
         <p>&copy; 2024 Free Play Finder. Todos os direitos reservados.</p>
     </footer>
 </body>
+
 </html>
-<router-outlet></router-outlet> 
+<router-outlet></router-outlet>
