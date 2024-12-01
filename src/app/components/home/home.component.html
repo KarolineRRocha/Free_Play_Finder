@@ -108,23 +108,38 @@
         </nav>
     </header> -->
 
-    
-    <div *ngIf="games">
-        <input style="height: 28px;" type="text" (input)="onSearch($event)" placeholder="Pesquisar pelo título" />
-        <ul>
-          <li *ngFor="let game of filteredGames">{{ game.title }}</li>
-        </ul>
-    </div>
     <section class="hero">
         <div class="hero-content">
             <h1>Bem-vindo ao Free Play Finder</h1>
             <p>Explore os melhores jogos, conecte-se com jogadores de todo o mundo e mergulhe em experiências incríveis. Sua próxima aventura começa aqui!</p>
-        </div>   
+        </div>  
+        <div *ngIf="games">
+            <input style="height: 28px;" type="text" (input)="onSearch($event)" placeholder="Pesquisar pelo título" />
+            <ul>
+              <li *ngFor="let game of filteredGames">{{ game.title }}</li>
+            </ul>
+        </div> 
     </section>
-    <h1 style="margin-left: 33%;">Veja todos os Jogos</h1>
+    <h1 style="margin-left: 33%;">Veja todos os <a routerLink="/games">Jogos</a></h1>
     <div style="margin-top: 3%; margin-left: 33%; width: 500px; height: 300px; overflow-y: auto; border:1px solid #e94560; border-radius: 10px;">
        
     <table  style="height: 400px;">
+        
+        <div class="filter-bar">
+            <div>
+                <label for="sort-by">Ordernar por:</label>
+                <select id="sort-by" (change)="sortGames()" name="sort-by">
+                    <option value="title">Título (A-Z)</option>
+                    <option value="title-desc">Título (Z-A)</option>
+                    <option value="genre-asc">Gênero (A-Z)</option>
+                    <option value="genre-desc">Gênero (Z-A)</option>
+                    <option value="platform-asc">Plataforma (A-Z)</option>
+                    <option value="platform-desc">Plataforma (Z-A)</option>
+                    <option value="release-asc">Data de Lançamento (Mais antigo)</option>
+                    <option value="release-desc">Data de Lançamento (Mais recente)</option>
+                </select>
+            </div>
+        </div>
             <tbody>
                     @for (game of games; track $index)
                     {
