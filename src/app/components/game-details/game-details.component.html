@@ -1,1 +1,159 @@
-<p>game-details works!</p>
+<div class="container-fluid py-4" *ngIf="gameDetails">
+  <!-- Back Button -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <button class="btn btn-outline-secondary" (click)="goBack()">
+        <i class="fas fa-arrow-left me-2"></i>Voltar aos Jogos
+      </button>
+    </div>
+  </div>
+
+  <!-- Game Header -->
+  <div class="row mb-4">
+    <div class="col-lg-4 col-md-5">
+      <img [src]="gameDetails.thumbnail" [alt]="gameDetails.title" class="img-fluid rounded shadow">
+    </div>
+    <div class="col-lg-8 col-md-7">
+      <div class="card h-100">
+        <div class="card-body">
+          <h1 class="card-title">{{ gameDetails.title }}</h1>
+          <p class="card-text text-muted">{{ gameDetails.shortDescription }}</p>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <strong>Gênero:</strong> <span class="badge bg-primary">{{ gameDetails.genre }}</span>
+            </div>
+            <div class="col-md-6">
+              <strong>Plataforma:</strong> <span class="badge bg-secondary">{{ gameDetails.platform }}</span>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <strong>Desenvolvedor:</strong> {{ gameDetails.developer }}
+            </div>
+            <div class="col-md-6">
+              <strong>Publicador:</strong> {{ gameDetails.publisher }}
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <strong>Data de Lançamento:</strong> {{ gameDetails.releaseDate | date:'dd/MM/yyyy' }}
+            </div>
+            <div class="col-md-6">
+              <strong>Status:</strong> <span class="badge bg-success">{{ gameDetails.status }}</span>
+            </div>
+          </div>
+
+          <!-- List Management -->
+          <div class="mt-4" *ngIf="profile">
+            <h5>Adicionar às Minhas Listas</h5>
+            <div class="row g-2">
+              <div class="col-md-3" *ngFor="let list of profile.lists">
+                <button class="btn w-100" [class]="isGameInList(list, gameDetails.id || '') ? 'btn-success' : 'btn-outline-primary'" (click)="toggleGameInList(list, gameDetails.id || '')">
+                  <i class="fas" [class]="isGameInList(list, gameDetails.id || '') ? 'fa-check' : 'fa-plus'"></i>
+                  {{ list.name }}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <a [href]="gameDetails.gameUrl" target="_blank" class="btn btn-primary btn-lg">
+              <i class="fas fa-play me-2"></i>Jogar Agora
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Description -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3>Descrição</h3>
+        </div>
+        <div class="card-body">
+          <p class="card-text" [innerHTML]="gameDetails.description | nl2br"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- System Requirements -->
+  <div class="row mb-4" *ngIf="gameDetails.minimumSystemRequirements">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3>Requisitos Mínimos do Sistema</h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6" *ngIf="gameDetails.minimumSystemRequirements.os">
+              <strong>Sistema Operacional:</strong> {{ gameDetails.minimumSystemRequirements.os }}
+            </div>
+            <div class="col-md-6" *ngIf="gameDetails.minimumSystemRequirements.processor">
+              <strong>Processador:</strong> {{ gameDetails.minimumSystemRequirements.processor }}
+            </div>
+            <div class="col-md-6" *ngIf="gameDetails.minimumSystemRequirements.memory">
+              <strong>Memória:</strong> {{ gameDetails.minimumSystemRequirements.memory }}
+            </div>
+            <div class="col-md-6" *ngIf="gameDetails.minimumSystemRequirements.graphics">
+              <strong>Gráficos:</strong> {{ gameDetails.minimumSystemRequirements.graphics }}
+            </div>
+            <div class="col-md-6" *ngIf="gameDetails.minimumSystemRequirements.storage">
+              <strong>Armazenamento:</strong> {{ gameDetails.minimumSystemRequirements.storage }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screenshots -->
+  <div class="row mb-4" *ngIf="gameDetails.screenshots && gameDetails.screenshots.length > 0">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3>Screenshots</h3>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-lg-4 col-md-6" *ngFor="let screenshot of gameDetails.screenshots">
+              <img [src]="screenshot.image" [alt]="gameDetails.title + ' screenshot'" class="img-fluid rounded shadow-sm" style="cursor: pointer;" (click)="openScreenshotModal(screenshot.image)">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Loading -->
+<div class="container-fluid py-4" *ngIf="loading">
+  <div class="row">
+    <div class="col-12 text-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Carregando...</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Screenshot Modal -->
+<div class="modal fade" id="screenshotModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Screenshot</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img [src]="selectedScreenshot" class="img-fluid" *ngIf="selectedScreenshot">
+      </div>
+    </div>
+  </div>
+</div>

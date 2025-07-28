@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <!-- Brand -->
+    <a class="navbar-brand d-flex align-items-center" routerLink="/games">
+      <div class="brand-icon me-2">
+        <i class="fas fa-gamepad"></i>
+      </div>
+      <span class="brand-text">FreePlayFinder</span>
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navigation Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" routerLink="/games" routerLinkActive="active">
+            <i class="fas fa-list me-2"></i>
+            <span>Jogos</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" routerLink="/lists" routerLinkActive="active">
+            <i class="fas fa-bookmark me-2"></i>
+            <span>Minhas Listas</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- User Profile Section -->
+      <div class="navbar-nav ms-auto" *ngIf="profile">
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center user-profile" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="avatar me-2">
+              <img *ngIf="profile.avatar" [src]="profile.avatar" [alt]="profile.name" class="rounded-circle" width="36" height="36">
+              <div *ngIf="!profile.avatar" class="avatar-placeholder rounded-circle d-flex align-items-center justify-content-center" [style.background-color]="getAvatarColor(profile.name)">
+                {{ getInitials(profile.name) }}
+              </div>
+            </div>
+            <span class="user-name">{{ profile.name }}</span>
+            <i class="fas fa-chevron-down ms-1"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+              <a class="dropdown-item d-flex align-items-center" routerLink="/profile">
+                <i class="fas fa-user-edit me-2"></i>
+                Editar Perfil
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center text-danger" href="#" (click)="logout()">
+                <i class="fas fa-sign-out-alt me-2"></i>
+                Sair
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

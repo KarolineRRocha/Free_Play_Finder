@@ -1,7 +1,7 @@
 import { Lists } from "./lists";
 
 export interface Profile {
-  id?: string;
+  id: string;
   name: string;
   email: string;
   password: string;

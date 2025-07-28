@@ -1,0 +1,24 @@
+{
+  "name": "FreePlayFinder",
+  "short_name": "FreePlayFinder",
+  "description": "Descubra seus próximos jogos favoritos gratuitos",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#667eea",
+  "theme_color": "#667eea",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "games",
+    "entertainment",
+    "lifestyle"
+  ],
+  "lang": "pt-BR"
+}

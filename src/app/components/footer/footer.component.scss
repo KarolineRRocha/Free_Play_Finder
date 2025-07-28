@@ -1,0 +1,163 @@
+.footer {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem 0 1rem;
+  flex-shrink: 0;
+  position: relative;
+  width: 100%;
+  box-shadow: 0 -4px 20px rgba(102, 126, 234, 0.15);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  }
+
+  .footer-brand {
+    .brand-icon {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+
+      i {
+        font-size: 1.2rem;
+        color: white;
+      }
+    }
+
+    .brand-text {
+      color: white;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: flex-end;
+
+    a {
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+
+      &:hover {
+        color: white;
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+        backdrop-filter: blur(10px);
+      }
+
+      &.active {
+        color: white;
+        background: rgba(255, 255, 255, 0.2);
+        font-weight: 600;
+        backdrop-filter: blur(10px);
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      &:hover::after {
+        width: 80%;
+      }
+    }
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+
+    .social-link {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+        color: white;
+      }
+
+      i {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+
+    p {
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 400;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 767.98px) {
+  .footer {
+    padding: 1.5rem 0 1rem;
+
+    .footer-brand {
+      margin-bottom: 1rem;
+    }
+
+    .footer-links {
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .social-links {
+      justify-content: center;
+    }
+
+    .footer-bottom {
+      text-align: center;
+
+      .col-md-6:last-child {
+        margin-top: 1rem;
+      }
+    }
+  }
+}

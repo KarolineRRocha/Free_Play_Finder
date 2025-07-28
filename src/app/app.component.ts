@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet, RouterModule } from '@angular/router';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { TitleService } from './services/title.service';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +10,19 @@ import { RouterLink, RouterLinkActive, RouterOutlet, RouterModule } from '@angul
   imports: [RouterOutlet,
     RouterLink,
     RouterLinkActive,
-    RouterModule
+    RouterModule,
+    NavbarComponent,
+    FooterComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'FreePlayFinder';
+
+  constructor(private titleService: TitleService) { }
+
+  ngOnInit() {
+    this.titleService.setBaseTitle();
+  }
 }

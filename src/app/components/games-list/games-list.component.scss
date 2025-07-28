@@ -1,0 +1,53 @@
+.game-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  cursor: pointer;
+  border: 1px solid #dee2e6;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: #6c757d;
+  line-height: 1.4;
+}
+
+.badge {
+  font-size: 0.75rem;
+  padding: 0.35em 0.65em;
+}
+
+.btn-outline-primary {
+  border-width: 1px;
+  font-size: 0.875rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #495057;
+}
+
+.card {
+  border: 1px solid #e9ecef;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.alert {
+  border-radius: 0.5rem;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}

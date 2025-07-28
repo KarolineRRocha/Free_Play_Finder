@@ -2,13 +2,15 @@ import { MinimumSystemRequirements } from "./minimumSystemRequirements";
 import { Screenshots } from "./screenshots";
 
 export interface GameDetails {
-  id?: string;
+  id: string;
   title: string;
   thumbnail: string;
   status: string;
   shortDescription: string;
   description: string;
   gameUrl: string;
+  genre: string;
+  platform: string;
   publisher: string;
   developer: string;
   releaseDate: string;

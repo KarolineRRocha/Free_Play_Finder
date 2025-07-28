@@ -25,11 +25,19 @@ export class GameService {
   }
 
   getGameDetails(id: string): Observable<GameDetails> {
-    return this.http.get<GameDetails>(`http://localhost:3000/gamesList/${id}`);
+    return this.http.get<GameDetails>(`http://localhost:3000/gameDetails/${id}`);
   }
 
   getProfiles(): Observable<Profile[]> {
     return this.http.get<Profile[]>("http://localhost:3000/profile");
+  }
+
+  getPlatforms(): Observable<Platforms[]> {
+    return this.http.get<Platforms[]>("http://localhost:3000/platforms");
+  }
+
+  getGenres(): Observable<Genres[]> {
+    return this.http.get<Genres[]>("http://localhost:3000/genres");
   }
 
   addGame(game: Game) {
@@ -42,5 +50,27 @@ export class GameService {
 
   editProfile(profile: Profile): Observable<Profile> {
     return this.http.put<Profile>(`http://localhost:3000/profile/`, profile);
+  }
+
+  // List management methods
+  addGameToList(profileId: string, listId: string, gameId: string): Observable<Profile> {
+    return this.http.patch<Profile>(`http://localhost:3000/profile/${profileId}`, {
+      lists: [{ id: listId, gamesIds: [gameId] }]
+    });
+  }
+
+  removeGameFromList(profileId: string, listId: string, gameId: string): Observable<Profile> {
+    return this.http.patch<Profile>(`http://localhost:3000/profile/${profileId}`, {
+      lists: [{ id: listId, gamesIds: [gameId] }]
+    });
+  }
+
+  moveGameBetweenLists(profileId: string, fromListId: string, toListId: string, gameId: string): Observable<Profile> {
+    return this.http.patch<Profile>(`http://localhost:3000/profile/${profileId}`, {
+      lists: [
+        { id: fromListId, gamesIds: [gameId] },
+        { id: toListId, gamesIds: [gameId] }
+      ]
+    });
   }
 }
