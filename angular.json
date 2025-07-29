@@ -56,7 +56,7 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "/FreePlayFinder/"
+              "baseHref": "/Free_Play_Finder/"
             },
             "development": {
               "optimization": false,

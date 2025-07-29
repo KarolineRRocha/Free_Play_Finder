@@ -10,7 +10,7 @@
     "test": "ng test",
     "deploy": "ng build --configuration production && echo 'Build completed successfully!'",
     "api": "json-server --watch api.json --port 3000",
-    "deploy:gh-pages": "ng build --configuration production && npx angular-cli-ghpages --dir=dist/free-play-finder"
+    "deploy:gh-pages": "ng build --configuration production && npx angular-cli-ghpages --dir=dist/free-play-finder --repo=https://github.com/KarolineRRocha/Free_Play_Finder.git"
   },
   "private": true,
   "dependencies": {
