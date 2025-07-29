@@ -10,6 +10,7 @@ import { MinimumSystemRequirements } from '../models/minimumSystemRequirements';
 import { Platforms } from '../models/platforms';
 import { Profile } from '../models/profile';
 import { Screenshots } from '../models/screenshots';
+import { ApiConfigService } from './api-config.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,26 +19,26 @@ export class GameService {
 
   public games: Array<Game> = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private apiConfig: ApiConfigService) { }
 
   getGames(): Observable<Game[]> {
-    return this.http.get<Game[]>(`http://localhost:3000/gamesList`);
+    return this.http.get<Game[]>(this.apiConfig.getApiUrl('gamesList'));
   }
 
   getGameDetails(id: string): Observable<GameDetails> {
-    return this.http.get<GameDetails>(`http://localhost:3000/gameDetails/${id}`);
+    return this.http.get<GameDetails>(this.apiConfig.getApiUrl(`gameDetails/${id}`));
   }
 
   getProfiles(): Observable<Profile[]> {
-    return this.http.get<Profile[]>("http://localhost:3000/profile");
+    return this.http.get<Profile[]>(this.apiConfig.getApiUrl('profile'));
   }
 
   getPlatforms(): Observable<Platforms[]> {
-    return this.http.get<Platforms[]>("http://localhost:3000/platforms");
+    return this.http.get<Platforms[]>(this.apiConfig.getApiUrl('platforms'));
   }
 
   getGenres(): Observable<Genres[]> {
-    return this.http.get<Genres[]>("http://localhost:3000/genres");
+    return this.http.get<Genres[]>(this.apiConfig.getApiUrl('genres'));
   }
 
   addGame(game: Game) {
@@ -45,28 +46,28 @@ export class GameService {
   }
 
   addProfile(profile: Profile): Observable<Profile> {
-    return this.http.put<Profile>(`http://localhost:3000/profile/`, profile);
+    return this.http.put<Profile>(this.apiConfig.getApiUrl('profile/'), profile);
   }
 
   editProfile(profile: Profile): Observable<Profile> {
-    return this.http.put<Profile>(`http://localhost:3000/profile/`, profile);
+    return this.http.put<Profile>(this.apiConfig.getApiUrl('profile/'), profile);
   }
 
   // List management methods
   addGameToList(profileId: string, listId: string, gameId: string): Observable<Profile> {
-    return this.http.patch<Profile>(`http://localhost:3000/profile/${profileId}`, {
+    return this.http.patch<Profile>(this.apiConfig.getApiUrl(`profile/${profileId}`), {
       lists: [{ id: listId, gamesIds: [gameId] }]
     });
   }
 
   removeGameFromList(profileId: string, listId: string, gameId: string): Observable<Profile> {
-    return this.http.patch<Profile>(`http://localhost:3000/profile/${profileId}`, {
+    return this.http.patch<Profile>(this.apiConfig.getApiUrl(`profile/${profileId}`), {
       lists: [{ id: listId, gamesIds: [gameId] }]
     });
   }
 
   moveGameBetweenLists(profileId: string, fromListId: string, toListId: string, gameId: string): Observable<Profile> {
-    return this.http.patch<Profile>(`http://localhost:3000/profile/${profileId}`, {
+    return this.http.patch<Profile>(this.apiConfig.getApiUrl(`profile/${profileId}`), {
       lists: [
         { id: fromListId, gamesIds: [gameId] },
         { id: toListId, gamesIds: [gameId] }
