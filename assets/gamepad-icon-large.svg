@@ -1,0 +1,72 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fundo roxo -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.2);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0.1);stop-opacity:1" />
+    </linearGradient>
+    
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="rgba(0,0,0,0.3)"/>
+    </filter>
+  </defs>
+  
+  <!-- Círculo de fundo com gradiente -->
+  <circle cx="200" cy="200" r="180" fill="url(#bgGradient)" filter="url(#glow)"/>
+  
+  <!-- Círculo interno com transparência -->
+  <circle cx="200" cy="200" r="140" fill="url(#circleGradient)" stroke="rgba(255,255,255,0.3)" stroke-width="4"/>
+  
+  <!-- Controle de videogame -->
+  <g transform="translate(200, 200)" filter="url(#shadow)">
+    <!-- Corpo do controle (oval horizontal) -->
+    <ellipse cx="0" cy="0" rx="90" ry="50" fill="white" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+    
+    <!-- Direcional (cruz) no lado esquerdo -->
+    <g transform="translate(-40, 0)">
+      <!-- Centro do direcional -->
+      <circle cx="0" cy="0" r="16" fill="rgba(0,0,0,0.1)"/>
+      
+      <!-- Braços do direcional -->
+      <rect x="-4" y="-24" width="8" height="24" fill="rgba(0,0,0,0.2)" rx="4"/>
+      <rect x="-4" y="0" width="8" height="24" fill="rgba(0,0,0,0.2)" rx="4"/>
+      <rect x="-24" y="-4" width="24" height="8" fill="rgba(0,0,0,0.2)" rx="4"/>
+      <rect x="0" y="-4" width="24" height="8" fill="rgba(0,0,0,0.2)" rx="4"/>
+    </g>
+    
+    <!-- Botões no lado direito -->
+    <g transform="translate(40, 0)">
+      <!-- Botão superior -->
+      <circle cx="0" cy="-16" r="12" fill="rgba(0,0,0,0.1)"/>
+      <circle cx="0" cy="-16" r="8" fill="rgba(0,0,0,0.2)"/>
+      
+      <!-- Botão inferior direito -->
+      <circle cx="12" cy="16" r="12" fill="rgba(0,0,0,0.1)"/>
+      <circle cx="12" cy="16" r="8" fill="rgba(0,0,0,0.2)"/>
+      
+      <!-- Botão inferior esquerdo -->
+      <circle cx="-12" cy="16" r="12" fill="rgba(0,0,0,0.1)"/>
+      <circle cx="-12" cy="16" r="8" fill="rgba(0,0,0,0.2)"/>
+    </g>
+    
+    <!-- Detalhes do controle -->
+    <ellipse cx="0" cy="0" rx="84" ry="44" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-dasharray="4,4"/>
+  </g>
+  
+  <!-- Efeito de brilho -->
+  <circle cx="140" cy="140" r="30" fill="rgba(255,255,255,0.1)" opacity="0.5"/>
+  <circle cx="260" cy="260" r="20" fill="rgba(255,255,255,0.05)" opacity="0.3"/>
+</svg> 
