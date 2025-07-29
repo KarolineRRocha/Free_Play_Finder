@@ -29,6 +29,25 @@ yarn.lock
 ehthumbs.db
 Thumbs.db
 
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
 # Environment variables
 .env
 .env.local
@@ -122,15 +141,6 @@ api.json.bak
 .vscode/settings.json
 .vscode/launch.json
 .vscode/extensions.json
-
-# OS
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
 
 # Temporary files
 *.tmp

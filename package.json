@@ -8,7 +8,9 @@
     "build:prod": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng build --configuration production && echo 'Build completed successfully!'"
+    "deploy": "ng build --configuration production && echo 'Build completed successfully!'",
+    "api": "json-server --watch api.json --port 3000",
+    "deploy:gh-pages": "ng build --configuration production && npx angular-cli-ghpages --dir=dist/free-play-finder"
   },
   "private": true,
   "dependencies": {
