@@ -1,9 +1,9 @@
 // API Mock for FreePlayFinder
-// Intercepta requisições HTTP para simular a API
+// Simula endpoints da API usando dados locais
 
-console.log('🔧 Setting up API mock...');
+console.log('🔧 Setting up API mock with local data...');
 
-// Função para aguardar os dados carregarem
+// Aguardar os dados carregarem
 function waitForData() {
   return new Promise((resolve) => {
     if (window.gamesData && window.gamesData.gamesList.length > 0) {
@@ -20,11 +20,44 @@ window.fetch = async function (url, options) {
   // Aguardar os dados carregarem
   await waitForData();
 
-  // Se for uma requisição para a API local
-  if (typeof url === 'string' && url.includes('/api/')) {
-    console.log('🔄 Intercepting API request:', url);
+  // Interceptar todas as requisições HTTP
+  if (typeof url === 'string') {
+    console.log('🔄 Intercepting HTTP request:', url);
 
-    const endpoint = url.split('/api/')[1];
+    // Extrair o endpoint da URL
+    let endpoint = '';
+    if (url.includes('/api/')) {
+      endpoint = url.split('/api/')[1];
+    } else if (url.includes('localhost:3000/')) {
+      endpoint = url.split('localhost:3000/')[1];
+    } else if (url.includes('gamesList')) {
+      endpoint = 'gamesList';
+    } else if (url.includes('gameDetails')) {
+      // Para gameDetails, precisamos extrair o ID se houver
+      if (url.includes('/')) {
+        const parts = url.split('/');
+        const lastPart = parts[parts.length - 1];
+        if (lastPart && lastPart !== 'gameDetails') {
+          // Se há um ID, buscar o jogo específico
+          const gameId = lastPart;
+          const game = window.gamesData.gameDetails.find(g => g.id === gameId);
+          if (game) {
+            console.log(`✅ Returning specific game details for ID ${gameId}:`, game);
+            return new Response(JSON.stringify(game), {
+              headers: { 'Content-Type': 'application/json' }
+            });
+          }
+        }
+      }
+      endpoint = 'gameDetails';
+    } else if (url.includes('profile')) {
+      endpoint = 'profile';
+    } else if (url.includes('genres')) {
+      endpoint = 'genres';
+    } else if (url.includes('platforms')) {
+      endpoint = 'platforms';
+    }
+
     let data = null;
 
     switch (endpoint) {
@@ -44,10 +77,8 @@ window.fetch = async function (url, options) {
         data = window.gamesData.platforms;
         break;
       default:
-        return new Response(JSON.stringify({ error: 'Endpoint not found' }), {
-          status: 404,
-          headers: { 'Content-Type': 'application/json' }
-        });
+        // Se não for um endpoint conhecido, usar o fetch original
+        return originalFetch.apply(this, arguments);
     }
 
     console.log(`✅ Returning data for ${endpoint}:`, data);
@@ -60,4 +91,48 @@ window.fetch = async function (url, options) {
   return originalFetch.apply(this, arguments);
 };
 
-console.log('✅ API mock setup complete!'); 
+// Mock da API para uso direto
+window.mockApi = {
+  get: async (endpoint) => {
+    await waitForData();
+
+    switch (endpoint) {
+      case '/gamesList':
+        return window.gamesData.gamesList;
+      case '/gameDetails':
+        return window.gamesData.gameDetails;
+      case '/profile':
+        return window.gamesData.profile;
+      case '/genres':
+        return window.gamesData.genres;
+      case '/platforms':
+        return window.gamesData.platforms;
+      default:
+        throw new Error(`Endpoint ${endpoint} not found`);
+    }
+  },
+
+  post: async (endpoint, data) => {
+    await waitForData();
+
+    // Simular salvamento local
+    if (endpoint === '/profile') {
+      window.gamesData.profile = data;
+      return data;
+    }
+    return data;
+  },
+
+  put: async (endpoint, data) => {
+    await waitForData();
+
+    // Simular atualização local
+    if (endpoint === '/profile') {
+      window.gamesData.profile = data;
+      return data;
+    }
+    return data;
+  }
+};
+
+console.log('✅ API mock setup complete with local data!'); 
