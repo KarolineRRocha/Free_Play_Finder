@@ -35,11 +35,11 @@ export class GameDetailsComponent implements OnInit {
     const gameId = this.route.snapshot.paramMap.get('id');
     if (gameId) {
       this.gameService.getGameDetails(gameId).subscribe({
-        next: (details) => {
+        next: (details: GameDetails) => {
           this.gameDetails = details;
           this.loading = false;
         },
-        error: (error) => {
+        error: (error: any) => {
           console.error('Error loading game details:', error);
           this.loading = false;
         }
@@ -49,12 +49,12 @@ export class GameDetailsComponent implements OnInit {
 
   loadProfile() {
     this.gameService.getProfiles().subscribe({
-      next: (profiles) => {
+      next: (profiles: Profile[]) => {
         if (profiles && profiles.length > 0) {
           this.profile = profiles[0];
         }
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error('Error loading profile:', error);
       }
     });
@@ -64,12 +64,13 @@ export class GameDetailsComponent implements OnInit {
     this.router.navigate(['/games']);
   }
 
-  isGameInList(list: Lists, gameId: string): boolean {
+  isGameInList(list: Lists, gameId: string | undefined): boolean {
+    if (!gameId) return false;
     return list.gamesIds?.includes(gameId) || false;
   }
 
-  toggleGameInList(list: Lists, gameId: string) {
-    if (!this.profile) return;
+  toggleGameInList(list: Lists, gameId: string | undefined) {
+    if (!this.profile || !gameId) return;
 
     const isInList = this.isGameInList(list, gameId);
 
@@ -83,7 +84,7 @@ export class GameDetailsComponent implements OnInit {
   }
 
   addGameToList(list: Lists, gameId: string) {
-    if (!this.profile || !list.id) return;
+    if (!this.profile || !list.id || !gameId) return;
 
     // Remove from other lists first
     this.profile.lists.forEach(l => {
@@ -99,11 +100,11 @@ export class GameDetailsComponent implements OnInit {
     list.gamesIds.push(gameId);
 
     this.gameService.editProfile(this.profile).subscribe({
-      next: (updatedProfile) => {
+      next: (updatedProfile: Profile) => {
         this.profile = updatedProfile;
         this.showNotification('Jogo adicionado à lista com sucesso!', 'success');
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error('Error adding game to list:', error);
         this.showNotification('Erro ao adicionar jogo à lista', 'error');
       }
@@ -111,16 +112,16 @@ export class GameDetailsComponent implements OnInit {
   }
 
   removeGameFromList(list: Lists, gameId: string) {
-    if (!this.profile || !list.gamesIds) return;
+    if (!this.profile || !list.gamesIds || !gameId) return;
 
     list.gamesIds = list.gamesIds.filter(id => id !== gameId);
 
     this.gameService.editProfile(this.profile).subscribe({
-      next: (updatedProfile) => {
+      next: (updatedProfile: Profile) => {
         this.profile = updatedProfile;
         this.showNotification('Jogo removido da lista com sucesso!', 'success');
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error('Error removing game from list:', error);
         this.showNotification('Erro ao remover jogo da lista', 'error');
       }

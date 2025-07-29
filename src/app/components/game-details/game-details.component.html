@@ -51,8 +51,8 @@
             <h5>Adicionar às Minhas Listas</h5>
             <div class="row g-2">
               <div class="col-md-3" *ngFor="let list of profile.lists">
-                <button class="btn w-100" [class]="isGameInList(list, gameDetails.id!) ? 'btn-success' : 'btn-outline-primary'" (click)="toggleGameInList(list, gameDetails.id!)">
-                  <i class="fas" [class]="isGameInList(list, gameDetails.id!) ? 'fa-check' : 'fa-plus'"></i>
+                <button class="btn w-100" [class]="isGameInList(list, gameDetails.id) ? 'btn-success' : 'btn-outline-primary'" (click)="toggleGameInList(list, gameDetails.id)">
+                  <i class="fas" [class]="isGameInList(list, gameDetails.id) ? 'fa-check' : 'fa-plus'"></i>
                   {{ list.name }}
                 </button>
               </div>
