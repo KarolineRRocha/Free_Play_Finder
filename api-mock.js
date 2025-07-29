@@ -24,32 +24,41 @@ window.fetch = async function (url, options) {
   if (typeof url === 'string') {
     console.log('🔄 Intercepting HTTP request:', url);
 
-    // Extrair o endpoint da URL
+    // Extrair o endpoint da URL - mais robusto
     let endpoint = '';
+    let gameId = null;
+
+    // Verificar diferentes padrões de URL
     if (url.includes('/api/')) {
-      endpoint = url.split('/api/')[1];
+      const path = url.split('/api/')[1];
+      if (path.includes('/')) {
+        const parts = path.split('/');
+        endpoint = parts[0];
+        gameId = parts[1];
+      } else {
+        endpoint = path;
+      }
     } else if (url.includes('localhost:3000/')) {
-      endpoint = url.split('localhost:3000/')[1];
+      const path = url.split('localhost:3000/')[1];
+      if (path.includes('/')) {
+        const parts = path.split('/');
+        endpoint = parts[0];
+        gameId = parts[1];
+      } else {
+        endpoint = path;
+      }
     } else if (url.includes('gamesList')) {
       endpoint = 'gamesList';
     } else if (url.includes('gameDetails')) {
-      // Para gameDetails, precisamos extrair o ID se houver
+      endpoint = 'gameDetails';
+      // Extrair ID se houver
       if (url.includes('/')) {
         const parts = url.split('/');
         const lastPart = parts[parts.length - 1];
         if (lastPart && lastPart !== 'gameDetails') {
-          // Se há um ID, buscar o jogo específico
-          const gameId = lastPart;
-          const game = window.gamesData.gameDetails.find(g => g.id === gameId);
-          if (game) {
-            console.log(`✅ Returning specific game details for ID ${gameId}:`, game);
-            return new Response(JSON.stringify(game), {
-              headers: { 'Content-Type': 'application/json' }
-            });
-          }
+          gameId = lastPart;
         }
       }
-      endpoint = 'gameDetails';
     } else if (url.includes('profile')) {
       endpoint = 'profile';
     } else if (url.includes('genres')) {
@@ -65,7 +74,20 @@ window.fetch = async function (url, options) {
         data = window.gamesData.gamesList;
         break;
       case 'gameDetails':
-        data = window.gamesData.gameDetails;
+        if (gameId) {
+          // Retornar jogo específico
+          data = window.gamesData.gameDetails.find(g => g.id === gameId);
+          if (!data) {
+            console.log(`❌ Game with ID ${gameId} not found`);
+            return new Response(JSON.stringify({ error: 'Game not found' }), {
+              status: 404,
+              headers: { 'Content-Type': 'application/json' }
+            });
+          }
+        } else {
+          // Retornar todos os detalhes
+          data = window.gamesData.gameDetails;
+        }
         break;
       case 'profile':
         data = window.gamesData.profile;
@@ -78,6 +100,7 @@ window.fetch = async function (url, options) {
         break;
       default:
         // Se não for um endpoint conhecido, usar o fetch original
+        console.log(`⚠️ Unknown endpoint: ${endpoint}, using original fetch`);
         return originalFetch.apply(this, arguments);
     }
 
