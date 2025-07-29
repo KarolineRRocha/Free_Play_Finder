@@ -47,6 +47,16 @@ window.fetch = async function (url, options) {
       } else {
         endpoint = path;
       }
+    } else if (url.includes('Free_Play_Finder/')) {
+      // Para GitHub Pages
+      const path = url.split('Free_Play_Finder/')[1];
+      if (path.includes('/')) {
+        const parts = path.split('/');
+        endpoint = parts[0];
+        gameId = parts[1];
+      } else {
+        endpoint = path;
+      }
     } else if (url.includes('gamesList')) {
       endpoint = 'gamesList';
     } else if (url.includes('gameDetails')) {
